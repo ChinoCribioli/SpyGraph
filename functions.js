@@ -8,7 +8,7 @@ function loadScript(url){
 loadScript("API_Commands.js");
 
 function new_song(link){
-  var id = /track\/([^\s\?]{22})/g.exec(link);//regular expression made with RegExr
+  var id = /track\/([^/^\s\?]{22})/g.exec(link);//regular expression made with RegExr
   //assuming that all ID's are 22 characters long.
   if (id == null){
     //despues ver esto
