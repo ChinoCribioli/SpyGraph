@@ -1,5 +1,5 @@
 <?php
-echo "Holis \n"
+echo "Holis \n";
 $servername = "us-cdbr-east-04.cleardb.com";
 $username = "bd2be9a1853f00";
 $password = "608acbeb";
@@ -9,7 +9,7 @@ $artist2 = $_POST["artist2"];
 $trackId = $_POST["trackId"];
 $popularity = $_POST["popularity"];
 
-echo "${artist1}"
+echo "${artist1}";
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
