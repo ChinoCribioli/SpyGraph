@@ -25,7 +25,7 @@ function connect(artist1,artist2,track_id,track_popularity){
 
 function new_song(link){
   var id = /track\/([^/^\s\?]{22})/g.exec(link);//regular expression made with RegExr
-  //assuming that all ID's are 22 characters long.
+  //in Spotify API all ID's are 22 characters long.
   if (id == null){
     //despues ver esto
     return;
