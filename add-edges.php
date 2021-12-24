@@ -11,7 +11,8 @@ $popularity = $_POST['popularity'];
 echo "hasta aca llega \n";
 
 // Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+//$conn = mysqli_connect($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname); //https://devcenter.heroku.com/articles/cleardb#using-cleardb-with-php
 // Check connection
 if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
