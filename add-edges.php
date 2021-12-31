@@ -39,7 +39,7 @@ else {
   }
 }
 
-echo "termine\n"
+echo "termine\n";
 
 mysqli_close($conn);
 ?>
