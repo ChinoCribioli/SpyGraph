@@ -1,8 +1,8 @@
 <?php
-$servername = "us-cdbr-east-04";//.cleardb.com";
+$servername = "us-cdbr-east-04.cleardb.com";
 $username = "bd2be9a1853f00";
 $password = "608acbeb";
-$dbname = "ClearDB";
+$dbname = "heroku_a7020db6550b501";//"ClearDB";
 $artist1 = $_POST['artist1'];
 $artist2 = $_POST['artist2'];
 $trackId = $_POST['trackId'];
