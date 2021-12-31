@@ -18,11 +18,11 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "SELECT * FROM relaciones WHERE Artist1 = " + $artist1 + " AND Artist2 = " + $artist2;
+$sql = "SELECT * FROM relaciones WHERE Artist1 = $artist1 AND Artist2 = $artist2;";
 $result = mysqli_query($conn, $sql);
 
 if(mysqli_num_rows($result) == 0){
-  $sql = "INSERT INTO relaciones (Artist1, Artist2, Song_Connecting, Popularity) VALUES ($artist1 , $artist2 , $trackId , $popularity)";
+  $sql = "INSERT INTO relaciones (Artist1, Artist2, Song_Connecting, Popularity) VALUES ($artist1 , $artist2 , $trackId , $popularity);";
   $fill_database = mysqli_query($conn, $sql);
 }
 else if(mysqli_num_rows($result) > 1){
@@ -32,9 +32,9 @@ else {
   $row = $result->fetch_assoc();
   $current_popularity = $row["Popularity"];
   if($current_popularity < $popularity){
-    $sql = "UPDATE relaciones SET Song_Connecting = " + $trackId + " WHERE Artist1 = " + $artist1 + " AND Artist2 = " + $artist2;
+    $sql = "UPDATE relaciones SET Song_Connecting = $trackId WHERE Artist1 = $artist1 AND Artist2 = $artist2;";
     $update_database = mysqli_query($conn, $sql);
-    $sql = "UPDATE relaciones SET Popularity = " + $popularity + " WHERE Artist1 = " + $artist1 + " AND Artist2 = " + $artist2;
+    $sql = "UPDATE relaciones SET Popularity = $popularity WHERE Artist1 = $artist1 AND Artist2 = $artist2;";
     $update_database = mysqli_query($conn, $sql);
   }
 }
