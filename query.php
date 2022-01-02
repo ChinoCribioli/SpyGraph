@@ -5,8 +5,6 @@ $password = "608acbeb";
 $dbname = "heroku_a7020db6550b501";
 $artist1 = $_POST['artist1'];
 $artist2 = $_POST['artist2'];
-$trackId = $_POST['trackId'];
-$popularity = $_POST['popularity'];
 
 echo "hasta aca llega \n";
 

@@ -27,7 +27,7 @@ function new_song(link){
   var id = /track\/([^/^\s\?]{22})/g.exec(link);//regular expression made with RegExr
   //in Spotify API all ID's are 22 characters long.
   if (id == null){
-    //despues ver esto
+    //TODO: error message
     return;
   }
   id = id[1];//I want the first capture group of the regular expression
@@ -44,4 +44,30 @@ function new_song(link){
   }
   fill_database();
   return;
+}
+
+function query(artist1, artist2){
+  var id1 = /track\/([^/^\s\?]{22})/g.exec(artist1), id2 = /track\/([^/^\s\?]{22})/g.exec(artist2);
+  if(id1 == null || id2 == null){
+    //TODO: error message
+    return;
+  }
+  id1 = id1[1];
+  id2 = id2[1];
+  if(id2 < id1){
+    var aux = id1;
+    id1 = id2;
+    id2 = aux;
+  }
+  fetch("query.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+    },
+    body: `artist1=${id1}&artist2=${id2}`,
+  }).then(function(response){
+    //here we return the path of songs that conects the artist using response.json()
+  });  
+
+
 }
