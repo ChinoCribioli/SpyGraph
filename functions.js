@@ -67,6 +67,7 @@ function query(artist1, artist2){
     body: `artist1=${id1}&artist2=${id2}`,
   }).then(function(response){
     //here we return the path of songs that conects the artist using response.json()
+    console.log(response.json());
   });  
 
 

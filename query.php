@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 $servername = "us-cdbr-east-04.cleardb.com";
 $username = "bd2be9a1853f00";
 $password = "608acbeb";
@@ -58,6 +60,11 @@ while( ! $queue->isEmpty() ){
 }
 if( ! isset($answer[0]) ){
   //return null
+
+  //https://stackoverflow.com/questions/33439030/how-to-grab-data-using-fetch-api-post-method-in-php
+  die(json_encode([
+    'error' => 'These artist are not in the same component.',
+  ]));
 }
 else {
   $artists_path = array();
@@ -78,6 +85,14 @@ else {
     $current = $parent[$current];
   }
   //return artist_path and songs_path
+  
+  //https://stackoverflow.com/questions/33439030/how-to-grab-data-using-fetch-api-post-method-in-php
+  die(json_encode([
+    'artists_path' => $artists_path,
+    'songs_path' => $songs_path,
+    'error' => null,
+    'data' => array($artists_path , $songs_path),
+  ]));
 }
 
 echo "termine\n";
