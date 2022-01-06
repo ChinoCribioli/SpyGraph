@@ -65,6 +65,12 @@ if( ! isset($answer[0]) ){
   die(json_encode([
     'error' => 'These artist are not in the same component.',
   ]));
+
+  // o, segun este link: https://www.espai.es/blog/2019/09/como-enviar-y-recibir-datos-con-la-api-fetch/
+  // tambien le puedo meter algo como:
+  // echo json_encode([
+  //   'error' => 'These artist are not in the same component.',
+  // ])
 }
 else {
   $artists_path = array();
