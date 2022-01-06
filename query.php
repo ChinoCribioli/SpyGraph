@@ -3,8 +3,8 @@ $servername = "us-cdbr-east-04.cleardb.com";
 $username = "bd2be9a1853f00";
 $password = "608acbeb";
 $dbname = "heroku_a7020db6550b501";
-$artist1 = $_POST['artist1'];
-$artist2 = $_POST['artist2'];
+$a1 = $_POST['artist1'];
+$a2 = $_POST['artist2'];
 
 echo "hasta aca llega \n";
 
@@ -15,25 +15,69 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "SELECT * FROM relaciones WHERE Artist1 = '$artist1' AND Artist2 = '$artist2';";
-$result = mysqli_query($conn, $sql);
+//I will make a bfs with two sources: artist1 and artist2, to find the shortest path between them
 
-if(mysqli_num_rows($result) == 0){
-  $sql = "INSERT INTO relaciones (Artist1, Artist2, Song_Connecting, Popularity) VALUES ('$artist1' , '$artist2' , '$trackId' , '$popularity');";
-  $fill_database = mysqli_query($conn, $sql);
+$queue = new \Ds\Queue();
+$queue->push($a1);
+$queue->push($a2);
+$parent = array(
+  $a1 => $a1,
+  $a2 => $a2,
+);
+$component = array(
+  $a1 => 1,
+  $a2 => 2,
+);
+$song_connecting = array();//$song_connecting['artist'] will contain the song connecting artist with its parent
+
+$answer = array(); //this will indicate the path connecting $a1 and $a2 if it exists
+
+while( ! $queue->isEmpty() ){
+  $current = $queue->pop();
+  $sql = "SELECT * FROM relaciones WHERE Artist1 = '$current' OR Artist2 = '$current';";
+  $result = mysqli_query($conn, $sql);
+  while ($row = $result->fetch_assoc()){
+    $new_artist = "";
+    if($row['Artist1'] == $current) $new_artist = $row['Artist2'];
+    else $new_artist = $row['Artist1'];
+    if(isset($parent[$new_artist])){
+      if($component[$new_artist] != $component[$current]){
+        $answer[] = $new_artist;
+        $answer[] = $current; //we found two artist in different components that are connected
+        $answer[] = $row['Song_Connecting'];
+        //$answer contains: {artist of the component of artist1, artist of the component of artist2, the song connecting them} in that order
+        break 2;
+      }
+      continue;
+    }
+    $parent[$new_artist] = $current;
+    $component[$new_artist] = $component[$current];
+    $song_connecting[$new_artist] = $row['Song_Connecting'];
+    $queue->push($new_artist);
+  }
 }
-else if(mysqli_num_rows($result) > 1){
-  echo "Error: more than one row with the same edge in the graph.";
+if( ! isset($answer[0]) ){
+  //return null
 }
 else {
-  $row = $result->fetch_assoc();
-  $current_popularity = $row["Popularity"];
-  if($current_popularity < $popularity){
-    $sql = "UPDATE relaciones SET Song_Connecting = '$trackId' WHERE Artist1 = '$artist1' AND Artist2 = '$artist2';";
-    $update_database = mysqli_query($conn, $sql);
-    $sql = "UPDATE relaciones SET Popularity = '$popularity' WHERE Artist1 = '$artist1' AND Artist2 = '$artist2';";
-    $update_database = mysqli_query($conn, $sql);
+  $artists_path = array();
+  $songs_path = array();
+  $current = answer[0];
+  while($current != $parent[$current]){
+    $artists_path[] = $current;
+    $songs_path[] = $song_connecting[$current];
+    $current = $parent[$current];
   }
+  $artists_path = array_reverse($artists_path);
+  $songs_path = array_reverse($songs_path);
+  $songs_path[] = $answer[2];
+  $current = answer[1];
+  while($current != $parent[$current]){
+    $artists_path[] = $current;
+    $songs_path[] = $song_connecting[$current];
+    $current = $parent[$current];
+  }
+  //return artist_path and songs_path
 }
 
 echo "termine\n";

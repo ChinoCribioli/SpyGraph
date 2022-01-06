@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 $servername = "us-cdbr-east-04.cleardb.com";
 $username = "bd2be9a1853f00";
 $password = "608acbeb";

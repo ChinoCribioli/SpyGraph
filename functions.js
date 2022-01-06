@@ -13,7 +13,7 @@ function connect(artist1,artist2,track_id,track_popularity){
     artist1 = artist2;
     artist2 = aux;
   }
-  fetch("test.php", {
+  fetch("add-edges.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
