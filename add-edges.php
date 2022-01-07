@@ -1,22 +1,19 @@
 <?php
 // error_reporting(E_ALL);
 // ini_set("display_errors", 1);
-$servername = "us-cdbr-east-04.cleardb.com";
-$username = "bd2be9a1853f00";
-$password = "608acbeb";
-$dbname = "heroku_a7020db6550b501";
+include("server_config.php");
 $artist1 = $_POST['artist1'];
 $artist2 = $_POST['artist2'];
 $trackId = $_POST['trackId'];
 $popularity = $_POST['popularity'];
 
-echo "hasta aca llega \n";
-
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname); //https://devcenter.heroku.com/articles/cleardb#using-cleardb-with-php
 // Check connection
 if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
+  die(json_encode([
+    'error' => "Connection failed: " . mysqli_connect_error(),
+  ]));
 }
 
 $sql = "SELECT * FROM relations WHERE Artist1 = '$artist1' AND Artist2 = '$artist2';";
@@ -39,8 +36,6 @@ else {
     $update_database = mysqli_query($conn, $sql);
   }
 }
-
-echo "termine\n";
 
 mysqli_close($conn);
 ?>

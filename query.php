@@ -1,13 +1,12 @@
 <?php
 //error_reporting(E_ALL);
 //ini_set("display_errors", 1);
+include("server_config.php");
 require_once("vendor/autoload.php");//https://stackoverflow.com/questions/65160203/fatal-error-uncaught-error-class-ds-map-not-found-php
-$servername = "us-cdbr-east-04.cleardb.com";
-$username = "bd2be9a1853f00";
-$password = "608acbeb";
-$dbname = "heroku_a7020db6550b501";
 $a1 = $_POST['artist1'];
-$a2 = $_POST['artist2']; //sanitizar estos dos!!!
+$a2 = $_POST['artist2'];
+//podria chequear si cumple la forma de un id con una expresion regular
+
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname); //https://devcenter.heroku.com/articles/cleardb#using-cleardb-with-php
@@ -37,12 +36,13 @@ $answer = array(); //this will indicate the path connecting $a1 and $a2 if it ex
 
 while( ! $queue->isEmpty() ){
   $current = $queue->pop();
+  //the question marks are to sanitize the variables
   $sql = "SELECT * FROM relations WHERE Artist1 = ? OR Artist2 = ?;";
-
-  $stmt = mysqli_prepare($conn, $sql);
-  mysqli_stmt_bind_param($stmt, 'ss', $current, $current);
-  mysqli_stmt_execute($stmt);
-  $result = $stmt->get_result();
+  //here I make the connection with the database in a secure way
+  $statement = mysqli_prepare($conn, $sql);
+  mysqli_stmt_bind_param($statement, 'ss', $current, $current);
+  mysqli_stmt_execute($statement);
+  $result = $statement->get_result();
 
   // $result = mysqli_query($conn, $sql);
   while ($row = $result->fetch_assoc()){
