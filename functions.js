@@ -47,7 +47,7 @@ function new_song(link){
 }
 
 function query(artist1, artist2){
-  var id1 = /track\/([^/^\s\?]{22})/g.exec(artist1), id2 = /track\/([^/^\s\?]{22})/g.exec(artist2);
+  var id1 = /artist\/([^/^\s\?]{22})/g.exec(artist1), id2 = /artist\/([^/^\s\?]{22})/g.exec(artist2);
   console.log(id1);
   if(id1 == null || id2 == null){
     //TODO: error message
