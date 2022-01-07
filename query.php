@@ -1,14 +1,13 @@
 <?php
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
+require_once("vendor/autoload.php");//https://stackoverflow.com/questions/65160203/fatal-error-uncaught-error-class-ds-map-not-found-php
 $servername = "us-cdbr-east-04.cleardb.com";
 $username = "bd2be9a1853f00";
 $password = "608acbeb";
 $dbname = "heroku_a7020db6550b501";
 $a1 = $_POST['artist1'];
 $a2 = $_POST['artist2'];
-
-echo "hasta aca llega \n";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname); //https://devcenter.heroku.com/articles/cleardb#using-cleardb-with-php
