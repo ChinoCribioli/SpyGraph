@@ -74,7 +74,7 @@ if( ! isset($answer[0]) ){
 else {
   $artists_path = array();
   $songs_path = array();
-  $current = answer[0];
+  $current = $answer[0];
   while($current != $parent[$current]){
     $artists_path[] = $current;
     $songs_path[] = $song_connecting[$current];
@@ -83,7 +83,7 @@ else {
   $artists_path = array_reverse($artists_path);
   $songs_path = array_reverse($songs_path);
   $songs_path[] = $answer[2];
-  $current = answer[1];
+  $current = $answer[1];
   while($current != $parent[$current]){
     $artists_path[] = $current;
     $songs_path[] = $song_connecting[$current];
