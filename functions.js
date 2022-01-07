@@ -65,10 +65,15 @@ function query(artist1, artist2){
       "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
     },
     body: `artist1=${id1}&artist2=${id2}`,
-  }).then(function(response){
-    //here we return the path of songs that conects the artist using response.json()
-    console.log(response.json());
-  });  
+  }).then(function(response) {
+    if (!response.ok) {
+      console.log("HTTP error, status = " + response.status);
+    }
+    return response.json();
+  })
+  .then(function(json) {
+    console.log(json);
+  });
 
 
 }
