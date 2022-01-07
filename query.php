@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
+//error_reporting(E_ALL);
+//ini_set("display_errors", 1);
 require_once("vendor/autoload.php");//https://stackoverflow.com/questions/65160203/fatal-error-uncaught-error-class-ds-map-not-found-php
 $servername = "us-cdbr-east-04.cleardb.com";
 $username = "bd2be9a1853f00";
