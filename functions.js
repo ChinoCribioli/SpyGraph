@@ -59,6 +59,7 @@ function query(artist1, artist2){
     id1 = id2;
     id2 = aux;
   }
+  console.log("llegue");
   fetch("query.php", {
     method: "POST",
     headers: {
