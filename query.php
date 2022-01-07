@@ -35,7 +35,7 @@ $answer = array(); //this will indicate the path connecting $a1 and $a2 if it ex
 
 while( ! $queue->isEmpty() ){
   $current = $queue->pop();
-  $sql = "SELECT * FROM relaciones WHERE Artist1 = '$current' OR Artist2 = '$current';";
+  $sql = "SELECT * FROM relations WHERE Artist1 = '$current' OR Artist2 = '$current';";
   $result = mysqli_query($conn, $sql);
   while ($row = $result->fetch_assoc()){
     $new_artist = "";
