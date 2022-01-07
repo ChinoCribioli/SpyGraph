@@ -7,7 +7,7 @@ $username = "bd2be9a1853f00";
 $password = "608acbeb";
 $dbname = "heroku_a7020db6550b501";
 $a1 = $_POST['artist1'];
-$a2 = $_POST['artist2'];
+$a2 = $_POST['artist2']; //sanitizar estos dos!!!
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname); //https://devcenter.heroku.com/articles/cleardb#using-cleardb-with-php
