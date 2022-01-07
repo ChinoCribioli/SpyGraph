@@ -13,7 +13,9 @@ $a2 = $_POST['artist2']; //sanitizar estos dos!!!
 $conn = new mysqli($servername, $username, $password, $dbname); //https://devcenter.heroku.com/articles/cleardb#using-cleardb-with-php
 // Check connection
 if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
+  die(json_encode([
+    'error' => "Connection failed: " . mysqli_connect_error(),
+  ]));
 }
 
 //I will make a bfs with two sources: artist1 and artist2, to find the shortest path between them
@@ -58,18 +60,9 @@ while( ! $queue->isEmpty() ){
   }
 }
 if( ! isset($answer[0]) ){
-  //return null
-
-  //https://stackoverflow.com/questions/33439030/how-to-grab-data-using-fetch-api-post-method-in-php
-  die(json_encode([
+  echo json_encode([
     'error' => 'These artist are not in the same component.',
-  ]));
-
-  // o, segun este link: https://www.espai.es/blog/2019/09/como-enviar-y-recibir-datos-con-la-api-fetch/
-  // tambien le puedo meter algo como:
-  // echo json_encode([
-  //   'error' => 'These artist are not in the same component.',
-  // ])
+  ]);
 }
 else {
   $artists_path = array();
@@ -93,15 +86,12 @@ else {
   $artists_path[] = $current; //add the other end of the path
   //return artist_path and songs_path
   
-  //https://stackoverflow.com/questions/33439030/how-to-grab-data-using-fetch-api-post-method-in-php
-  die(json_encode([
+  echo json_encode([
     'artists_path' => $artists_path,
     'songs_path' => $songs_path,
     'error' => null,
-  ]));
+  ]);
 }
-
-echo "termine\n";
 
 mysqli_close($conn);
 ?>
