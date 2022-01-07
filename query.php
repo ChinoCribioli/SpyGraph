@@ -80,7 +80,7 @@ else {
     $songs_path[] = $song_connecting[$current];
     $current = $parent[$current];
   }
-  $songs_path[] = $current; //add one end of the path
+  $artists_path[] = $current; //add one end of the path
   $artists_path = array_reverse($artists_path);
   $songs_path = array_reverse($songs_path);
   $songs_path[] = $answer[2];
@@ -90,7 +90,7 @@ else {
     $songs_path[] = $song_connecting[$current];
     $current = $parent[$current];
   }
-  $songs_path[] = $current; //add the other end of the path
+  $artists_path[] = $current; //add the other end of the path
   //return artist_path and songs_path
   
   //https://stackoverflow.com/questions/33439030/how-to-grab-data-using-fetch-api-post-method-in-php
