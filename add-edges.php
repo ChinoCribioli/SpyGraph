@@ -1,13 +1,14 @@
 <?php
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
+require 'vendor/autoload.php';
 include("server_config.php");
 // $artist1 = $_POST['artist1'];
 // $artist2 = $_POST['artist2'];
 // $popularity = $_POST['popularity'];
 $trackId = $_POST['trackId'];
 
-$api = new SpotifyWebAPI\SpotifyWebAPI();
+$api = new \SpotifyWebAPI\SpotifyWebAPI();
 $api->setAccessToken($accessToken);
 
 $track = json_decode($api->getTrack($trackId),true);
