@@ -1,6 +1,7 @@
 {
   "require": {
     "php": "*",
-    "php-ds/php-ds": "^1.4"
+    "php-ds/php-ds": "^1.4",
+    "jwilsson/spotify-web-api-php": "^5.0"
   }
 }

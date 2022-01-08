@@ -30,7 +30,7 @@ class InstalledVersions
     'aliases' => 
     array (
     ),
-    'reference' => 'cbd7f6697f05484de6be06a72da7f8aa917e514b',
+    'reference' => '682506efc24ba8e4536b648701e2d5efe60ea73b',
     'name' => '__root__',
   ),
   'versions' => 
@@ -42,7 +42,16 @@ class InstalledVersions
       'aliases' => 
       array (
       ),
-      'reference' => 'cbd7f6697f05484de6be06a72da7f8aa917e514b',
+      'reference' => '682506efc24ba8e4536b648701e2d5efe60ea73b',
+    ),
+    'jwilsson/spotify-web-api-php' => 
+    array (
+      'pretty_version' => '5.0.2',
+      'version' => '5.0.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '0e78bc2c33ca92d7f5fa772861196f54e0093eef',
     ),
     'php-ds/php-ds' => 
     array (

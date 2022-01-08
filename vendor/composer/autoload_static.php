@@ -7,6 +7,10 @@ namespace Composer\Autoload;
 class ComposerStaticInit9551add69fae2c7b741c8b348ec45d2c
 {
     public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'SpotifyWebAPI\\' => 14,
+        ),
         'D' => 
         array (
             'Ds\\' => 3,
@@ -14,6 +18,10 @@ class ComposerStaticInit9551add69fae2c7b741c8b348ec45d2c
     );
 
     public static $prefixDirsPsr4 = array (
+        'SpotifyWebAPI\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jwilsson/spotify-web-api-php/src',
+        ),
         'Ds\\' => 
         array (
             0 => __DIR__ . '/..' . '/php-ds/php-ds/src',

@@ -34,15 +34,6 @@ const APIController = (function() {
         return data;
     }
 
-    // const _getTrack = async (token,trackEndPoint) => {
-    //     const result = await fetch(`${trackEndPoint}`,{
-    //         method: 'GET',
-    //         headers: {'Authorization' : 'Bearer ' + token}
-    //     });
-    //     const data = await result.json();
-    //     return data;
-    // }
-
     return {
         getToken() {
             return _getToken();
