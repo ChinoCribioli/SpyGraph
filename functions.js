@@ -31,12 +31,19 @@ function new_song_from_server(link){
     return;
   }
   id = id[1];//I want the first capture group of the regular expression
+  const API = APIController;
+  const get_token = async () => {
+    const token = await API.getToken();
+    const track = await API.getTrack(token,id);
+    return;
+  }
+  get_token();
   fetch("add-edges.php", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
     },
-    body: `trackId=${id}`,
+    body: `trackId=${id}&token=${token}`,
   }).then(function(response) {
     if (!response.ok) {
       console.log("HTTP error, status = " + response.status);
