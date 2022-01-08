@@ -16,26 +16,50 @@ if (!$conn) {
   ]));
 }
 
-$sql = "SELECT * FROM relations WHERE Artist1 = '$artist1' AND Artist2 = '$artist2';";
-$result = mysqli_query($conn, $sql);
+//the question marks are to sanitize the variables
+$sql = "SELECT * FROM relations WHERE Artist1 = ? AND Artist2 = ?;";
+//here I make the connection with the database in a secure way
+$statement = mysqli_prepare($conn, $sql);
+mysqli_stmt_bind_param($statement, 'ss', $artist1, $artist2);
+mysqli_stmt_execute($statement);
+$result = $statement->get_result();
+
+// $sql = "SELECT * FROM relations WHERE Artist1 = '$artist1' AND Artist2 = '$artist2';";
+// $result = mysqli_query($conn, $sql);
+
 
 if(mysqli_num_rows($result) == 0){
-  $sql = "INSERT INTO relations (Artist1, Artist2, Song_Connecting, Popularity) VALUES ('$artist1' , '$artist2' , '$trackId' , '$popularity');";
-  $fill_database = mysqli_query($conn, $sql);
+  $sql = "INSERT INTO relations (Artist1, Artist2, Song_Connecting, Popularity) VALUES (?,?,?,?);";
+  $statement = mysqli_prepare($conn, $sql);
+  mysqli_stmt_bind_param($statement, 'sssi', $artist1, $artist2,$trackId,$popularity);
+  mysqli_stmt_execute($statement);
+  $result = $statement->get_result();
 }
 else if(mysqli_num_rows($result) > 1){
-  echo "Error: more than one row with the same edge in the graph.";
+  die(json_encode([
+    'error' => 'more than one row with the same edge in the graph.',
+  ]));
 }
 else {
   $row = $result->fetch_assoc();
   $current_popularity = $row["Popularity"];
   if($current_popularity < $popularity){
-    $sql = "UPDATE relations SET Song_Connecting = '$trackId' WHERE Artist1 = '$artist1' AND Artist2 = '$artist2';";
-    $update_database = mysqli_query($conn, $sql);
-    $sql = "UPDATE relations SET Popularity = '$popularity' WHERE Artist1 = '$artist1' AND Artist2 = '$artist2';";
-    $update_database = mysqli_query($conn, $sql);
+    $sql = "UPDATE relations SET Song_Connecting = ? WHERE Artist1 = ? AND Artist2 = ?;";
+    $statement = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($statement, 'sss', $trackId, $artist1, $artist2);
+    mysqli_stmt_execute($statement);
+    $result = $statement->get_result();
+    $sql = "UPDATE relations SET Popularity = ? WHERE Artist1 = ? AND Artist2 = ?;";
+    $statement = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($statement, 'iss', $popularity, $artist1, $artist2);
+    mysqli_stmt_execute($statement);
+    $result = $statement->get_result();
   }
 }
+
+echo json_encode([
+  'error' => null,
+]);
 
 mysqli_close($conn);
 ?>
