@@ -3,6 +3,8 @@ error_reporting(E_ALL);
 ini_set("display_errors", 1);
 require 'vendor/autoload.php';
 include("server_config.php");
+include("auth.php");
+include("callback.php");
 // $artist1 = $_POST['artist1'];
 // $artist2 = $_POST['artist2'];
 // $popularity = $_POST['popularity'];
