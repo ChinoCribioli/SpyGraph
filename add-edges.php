@@ -12,7 +12,7 @@ $api = new \SpotifyWebAPI\SpotifyWebAPI();
 $api->setAccessToken($accessToken);
 $track = $api->getTrack($trackId);
 //var_dump($track);
-//$track = json_decode($api->getTrack($trackId),true);
+$track = array($track);
 $popularity = $track['popularity'];
 $artists = $track['artists'];
 var_dump($artists);
