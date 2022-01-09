@@ -11,12 +11,11 @@ $trackId = $_POST['trackId'];
 $api = new \SpotifyWebAPI\SpotifyWebAPI();
 $api->setAccessToken($accessToken);
 $track = $api->getTrack($trackId);
-var_dump($track);
-//echo "setee la token \n";
+//var_dump($track);
 //$track = json_decode($api->getTrack($trackId),true);
-echo "$track \n";
 $popularity = $track['popularity'];
 $artists = $track['artists'];
+var_dump($artists);
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname); //https://devcenter.heroku.com/articles/cleardb#using-cleardb-with-php
