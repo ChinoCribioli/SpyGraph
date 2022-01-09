@@ -1,7 +1,6 @@
 <?php
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
-echo("antes de empece \n");
 require 'vendor/autoload.php';
 include("server_config.php");
 include("auth.php");
@@ -9,12 +8,12 @@ include("auth.php");
 // $artist2 = $_POST['artist2'];
 // $popularity = $_POST['popularity'];
 $trackId = $_POST['trackId'];
-echo "empece \n";
 $api = new \SpotifyWebAPI\SpotifyWebAPI();
-echo "defini la \$api \n";
 $api->setAccessToken($accessToken);
-echo "setee la token \n";
-$track = json_decode($api->getTrack($trackId),true);
+$track = $api->getTrack($trackId);
+var_dump($track);
+//echo "setee la token \n";
+//$track = json_decode($api->getTrack($trackId),true);
 echo "$track \n";
 $popularity = $track['popularity'];
 $artists = $track['artists'];
