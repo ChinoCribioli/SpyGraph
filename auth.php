@@ -10,6 +10,6 @@ $session->requestCredentialsToken();
 $accessToken = $session->getAccessToken();
 
 
-header('Location: add-edges.php');
-die();
+// header('Location: add-edges.php');
+// die();
 ?>
