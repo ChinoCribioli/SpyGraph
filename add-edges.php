@@ -1,18 +1,13 @@
 <?php
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
-require 'vendor/autoload.php';
+require 'vendor/autoload.php';//creo que si comentas esta linea sigue andando porque autoload lo cargas tambien en auth.php
 include("server_config.php");
-include("auth.php");
-// $artist1 = $_POST['artist1'];
-// $artist2 = $_POST['artist2'];
-// $popularity = $_POST['popularity'];
+include("auth.php"); //set the access token
 $trackId = $_POST['trackId'];
-$api = new \SpotifyWebAPI\SpotifyWebAPI();
+$api = new \SpotifyWebAPI\SpotifyWebAPI();//set the Spotify API
 $api->setAccessToken($accessToken);
 $track = $api->getTrack($trackId);
-//var_dump($track);
-//$track = json_decode($track,true);
 $popularity = $track->popularity;
 $artists = $track->artists;
 
@@ -42,10 +37,7 @@ for($i = 0 ; $i < count($artists) ; $i++)for($j = $i+1 ; $j < count($artists) ; 
   mysqli_stmt_execute($statement);
   $result = $statement->get_result();
 
-  // $sql = "SELECT * FROM relations WHERE Artist1 = '$artist1' AND Artist2 = '$artist2';";
-  // $result = mysqli_query($conn, $sql);
-
-
+  
   if(mysqli_num_rows($result) == 0){
     $sql = "INSERT INTO relations (Artist1, Artist2, Song_Connecting, Popularity) VALUES (?,?,?,?);";
     $statement = mysqli_prepare($conn, $sql);

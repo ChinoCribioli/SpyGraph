@@ -9,7 +9,4 @@ $session = new SpotifyWebAPI\Session(
 $session->requestCredentialsToken();
 $accessToken = $session->getAccessToken();
 
-
-// header('Location: add-edges.php');
-// die();
 ?>
