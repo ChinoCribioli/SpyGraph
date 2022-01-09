@@ -10,11 +10,11 @@ include("auth.php");
 $trackId = $_POST['trackId'];
 
 $api = new \SpotifyWebAPI\SpotifyWebAPI();
-echo "defini la \$api";
+echo "defini la \$api \n";
 $api->setAccessToken($accessToken);
-echo "setee la token";
+echo "setee la token \n";
 $track = json_decode($api->getTrack($trackId),true);
-echo "$track";
+echo "$track \n";
 $popularity = $track['popularity'];
 $artists = $track['artists'];
 
