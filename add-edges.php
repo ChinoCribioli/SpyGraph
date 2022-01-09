@@ -8,7 +8,7 @@ include("auth.php");
 // $artist2 = $_POST['artist2'];
 // $popularity = $_POST['popularity'];
 $trackId = $_POST['trackId'];
-
+echo "empece \n";
 $api = new \SpotifyWebAPI\SpotifyWebAPI();
 echo "defini la \$api \n";
 $api->setAccessToken($accessToken);
