@@ -15,8 +15,6 @@ $track = $api->getTrack($trackId);
 //$track = json_decode($track,true);
 $popularity = $track->popularity;
 $artists = $track->artists;
-var_dump($popularity);
-var_dump($artists);
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname); //https://devcenter.heroku.com/articles/cleardb#using-cleardb-with-php
@@ -28,8 +26,8 @@ if (!$conn) {
 }
 
 for($i = 0 ; $i < count($artists) ; $i++)for($j = $i+1 ; $j < count($artists) ; $j++){
-  $artist1 = $artists[$i]['id'];
-  $artist2 = $artists[$j]['id'];
+  $artist1 = $artists[$i]->id;
+  $artist2 = $artists[$j]->id;
   if($artist2 < $artist1){
     $aux = $artist1;
     $artist1 = $artist2;
