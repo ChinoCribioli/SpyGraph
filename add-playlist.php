@@ -21,10 +21,8 @@ else{
     $songs = $songs->items;
     echo "{ \"errors\" : [";
     for($i = 0 ; $i < count($songs) ; $i++){
-        $track = $songs[$i];
-        var_dump($track);
-        var_dump($track->popularity);
-        //upload_song($track->id,$track->artists,$track->popularity);
+        $track = $api->getTrack($songs[$i]->id);//the tracks in the album don't have popularity entry, so I have to make another query to get that
+        upload_song($track->id,$track->artists,$track->popularity);
         if($i != count($songs)-1) echo ",";
     }
     echo "]}";
