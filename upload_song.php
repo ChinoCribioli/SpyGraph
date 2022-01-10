@@ -1,9 +1,9 @@
 <?php
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
-include("server_config.php");
 require 'vendor/autoload.php';
 function upload_song($trackId,$api){
+    include("server_config.php");
     $track = $api->getTrack($trackId);
     $popularity = $track->popularity;
     $artists = $track->artists;
