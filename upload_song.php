@@ -1,5 +1,5 @@
 <?php
-
+include("server_config.php");
 require 'vendor/autoload.php';
 function upload_song($trackId,$api){
     $track = $api->getTrack($trackId);
