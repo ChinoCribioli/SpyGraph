@@ -7,6 +7,7 @@ $playlistId = $_POST['playlistId'];
 $isPlaylist = $_POST['isPlaylist'];
 if($isPlaylist == 'true'){//it's an string so I have to compare it with "true"
     $songs = $api->getPlaylist($playlistId)->tracks;
+    var_dump($songs);
     $songs = $songs->items;
     echo "{ \"errors\" : [";
     for($i = 0 ; $i < count($songs) ; $i++){
