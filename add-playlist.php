@@ -7,13 +7,16 @@ $playlistId = $_POST['playlistId'];
 $isPlaylist = $_POST['isPlaylist'];
 if($isPlaylist == 'true'){//it's an string so I have to compare it with "true"
     $songs = $api->getPlaylist($playlistId)->tracks;
+    $songs = $songs->items;
+    for($i = 0 ; $i < count($songs) ; $i++){
+        upload_song($songs[$i]->id,$api);
+    }
 }
 else{
     $songs = $api->getAlbum($playlistId)->tracks;
-}
-$songs = $songs->items;
-for($i = 0 ; $i < count($songs) ; $i++){
-    var_dump($songs[$i]->id);
-    upload_song($songs[$i]->id,$api);
+    $songs = $songs->items;
+    for($i = 0 ; $i < count($songs) ; $i++){
+        upload_song($songs[$i]->id,$api);
+    }
 }
 ?>

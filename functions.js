@@ -88,6 +88,7 @@ function new_playlist(link){//or album
     },
     body: `playlistId=${id}&isPlaylist=${isPlaylist}`,
   }).then(function(response) {
+    console.log("llegue hasta aca\n");
     if (!response.ok) {
       console.log("HTTP error, status = " + response.status);
     }
