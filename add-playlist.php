@@ -9,11 +9,11 @@ if($isPlaylist == 'true'){//it's an string so I have to compare it with "true"
     $songs = $api->getPlaylist($playlistId)->tracks;
 }
 else{
-    echo "entre: $isPlaylist \n";
     $songs = $api->getAlbum($playlistId)->tracks;
 }
-var_dump($songs);
+//var_dump($songs);
 foreach($songs as $track){
+    var_dump($track);
     upload_song($track->id,$api);
 }
 ?>
