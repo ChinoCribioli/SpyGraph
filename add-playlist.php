@@ -11,8 +11,9 @@ if($isPlaylist == 'true'){//it's an string so I have to compare it with "true"
 else{
     $songs = $api->getAlbum($playlistId)->tracks;
 }
+$songs = $songs->items;
 var_dump($songs);
-var_dump($songs["0"]);
+var_dump($songs[0]);
 foreach($songs as $track){
     upload_song($track->id,$api);
 }
