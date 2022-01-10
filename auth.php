@@ -1,4 +1,5 @@
 <?php
+
 require 'vendor/autoload.php';
 
 $session = new SpotifyWebAPI\Session(
@@ -8,5 +9,7 @@ $session = new SpotifyWebAPI\Session(
 
 $session->requestCredentialsToken();
 $accessToken = $session->getAccessToken();
+$api = new \SpotifyWebAPI\SpotifyWebAPI();//set the Spotify API
+$api->setAccessToken($accessToken);
 
 ?>
