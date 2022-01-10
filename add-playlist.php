@@ -13,7 +13,7 @@ else{
 }
 $songs = $songs->items;
 for($i = 0 ; $i < count($songs) ; $i++){
-    var_dump($songs[$i]->name);
+    var_dump($songs[$i]->id);
     upload_song($songs[$i]->id,$api);
 }
 ?>
