@@ -6,7 +6,7 @@ include("server_config.php");
 include("auth.php"); //set the access token
 include("upload_song.php");
 $trackId = $_POST['trackId'];
-upload_song($trackId);
+upload_song($trackId,$api);
 // $track = $api->getTrack($trackId);
 // $popularity = $track->popularity;
 // $artists = $track->artists;

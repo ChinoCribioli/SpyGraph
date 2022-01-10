@@ -1,7 +1,7 @@
 <?php
 
 require 'vendor/autoload.php';
-function upload_song($trackId){
+function upload_song($trackId,$api){
     $track = $api->getTrack($trackId);
     $popularity = $track->popularity;
     $artists = $track->artists;
