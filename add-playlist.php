@@ -15,7 +15,7 @@ if($isPlaylist == 'true'){//it's an string so I have to compare it with "true"
 else{
     $songs = $api->getAlbum($playlistId)->tracks;
     $songs = $songs->items;
-    echo `{ "errors" : [`;
+    echo "{ \"errors\" : [";
     for($i = 0 ; $i < count($songs) ; $i++){
         upload_song($songs[$i]->id,$api);
         if($i != count($songs)-1) echo ",";
