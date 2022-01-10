@@ -6,7 +6,7 @@ include("upload_song.php");
 $playlistId = $_POST['playlistId'];
 $isPlaylist = $_POST['isPlaylist'];
 
-if($isPlaylist == "false"){//it's an string so I have to compare it with "false"
+if($isPlaylist == "true"){//it's an string so I have to compare it with "true"
     $songs = $api->getPlaylist($playlistId)->tracks;
 }
 else{
