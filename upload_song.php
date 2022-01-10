@@ -1,5 +1,6 @@
 <?php
 
+require 'vendor/autoload.php';
 function upload_song($trackId){
     $track = $api->getTrack($trackId);
     $popularity = $track->popularity;
