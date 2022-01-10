@@ -76,11 +76,9 @@ function new_playlist(link){//or album
   var isPlaylist = true; //this variable tells me if the id is from a playlist or an album
   var id = /playlist\/([^/^\s\?]{22})/g.exec(link);//regular expression made with RegExr
   //in Spotify API all ID's are 22 characters long.
-  console.log(id);
   if (id == null){
     isPlaylist = false;
     id = /album\/([^/^\s\?]{22})/g.exec(link);
-    console.log(id);
   }
   id = id[1];//I want the first capture group of the regular expression
   fetch("add-playlist.php", {
