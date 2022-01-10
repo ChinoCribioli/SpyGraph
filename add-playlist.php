@@ -10,7 +10,8 @@ if($isPlaylist == 'true'){//it's an string so I have to compare it with "true"
     $songs = $songs->items;
     echo "{ \"errors\" : [";
     for($i = 0 ; $i < count($songs) ; $i++){
-        upload_song($songs[$i]->track->id,$api);
+        $track = $songs[$i]->track;
+        upload_song($track->id,$track->artists,$track->popularity);
         if($i != count($songs)-1) echo ",";
     }
     echo "]}";
@@ -20,7 +21,8 @@ else{
     $songs = $songs->items;
     echo "{ \"errors\" : [";
     for($i = 0 ; $i < count($songs) ; $i++){
-        upload_song($songs[$i]->id,$api);
+        $track = $songs[$i];
+        upload_song($track->id,$track->artists,$track->popularity);
         if($i != count($songs)-1) echo ",";
     }
     echo "]}";

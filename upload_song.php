@@ -2,12 +2,9 @@
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 require 'vendor/autoload.php';
-function upload_song($trackId,$api){
+function upload_song($trackId,$artists,$popularity){
     include("server_config.php");
-    $track = $api->getTrack($trackId);
-    $popularity = $track->popularity;
-    $artists = $track->artists;
-
+    
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname); //https://devcenter.heroku.com/articles/cleardb#using-cleardb-with-php
     // Check connection
