@@ -5,7 +5,6 @@ include("auth.php"); //set the access token
 include("upload_song.php");
 $playlistId = $_POST['playlistId'];
 $isPlaylist = $_POST['isPlaylist'];
-var_dump($isPlaylist);
 if($isPlaylist == 'true'){//it's an string so I have to compare it with "true"
     $songs = $api->getPlaylist($playlistId)->tracks;
 }
@@ -13,6 +12,8 @@ else{
     echo "entre: $isPlaylist \n";
     $songs = $api->getAlbum($playlistId)->tracks;
 }
+var_dump($songs[0]);
+var_dump($songs);
 foreach($songs as $track){
     upload_song($track->id,$api);
 }
