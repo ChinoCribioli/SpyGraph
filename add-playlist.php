@@ -8,8 +8,8 @@ $isPlaylist = $_POST['isPlaylist'];
 echo $isPlaylist . "\n";
 
 if($isPlaylist){
+    echo "entre: $isPlaylist \n";
     $songs = $api->getPlaylist($playlistId)->tracks;
-    echo "entre \n";
 }
 else{
     $songs = $api->getAlbum($playlistId)->tracks;
