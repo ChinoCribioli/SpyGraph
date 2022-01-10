@@ -91,11 +91,10 @@ function new_playlist(link){//or album
     if (!response.ok) {
       console.log("HTTP error, status = " + response.status);
     }
-    //console.log(response.json());
-    return response;
+    return response.json();
   })
-  .then(function(response) {
-    console.log(response.json());
+  .then(function(json) {
+    console.log(json);
   });
 
 }
