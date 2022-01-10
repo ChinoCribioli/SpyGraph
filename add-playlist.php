@@ -12,7 +12,6 @@ else{
     echo "entre: $isPlaylist \n";
     $songs = $api->getAlbum($playlistId)->tracks;
 }
-var_dump($songs[0]);
 var_dump($songs);
 foreach($songs as $track){
     upload_song($track->id,$api);
