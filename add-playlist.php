@@ -22,7 +22,9 @@ else{
     echo "{ \"errors\" : [";
     for($i = 0 ; $i < count($songs) ; $i++){
         $track = $songs[$i];
-        upload_song($track->id,$track->artists,$track->popularity);
+        var_dump($track);
+        var_dump($track->popularity);
+        //upload_song($track->id,$track->artists,$track->popularity);
         if($i != count($songs)-1) echo ",";
     }
     echo "]}";
