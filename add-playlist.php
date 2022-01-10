@@ -12,8 +12,8 @@ else{
     $songs = $api->getAlbum($playlistId)->tracks;
 }
 $songs = $songs->items;
-var_dump($songs[0]->id);
 for($i = 0 ; $i < count($songs) ; $i++){
+    var_dump($songs[$i]->name);
     upload_song($songs[$i]->id,$api);
 }
 ?>
