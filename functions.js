@@ -23,6 +23,29 @@
 //   console.log("fetch done");
 // }
 
+// function new_song(link){
+//   var id = /track\/([^/^\s\?]{22})/g.exec(link);//regular expression made with RegExr
+//   //in Spotify API all ID's are 22 characters long.
+//   if (id == null){
+//     //TODO: error message
+//     return;
+//   }
+//   id = id[1];//I want the first capture group of the regular expression
+//   const API = APIController;
+//   const fill_database = async () => {
+//     const token = await API.getToken();
+//     const track = await API.getTrack(token,id);
+//     for(var i = 0 ; i < track.artists.length ; i++){
+//       for(var j = i+1 ; j < track.artists.length ; j++){
+//         connect(track.artists[i].id,track.artists[j].id,track.id,track.popularity);
+//       }
+//     }
+//     return;
+//   }
+//   fill_database();
+//   return;
+// }
+
 function new_song(link){
   var id = /track\/([^/^\s\?]{22})/g.exec(link);//regular expression made with RegExr
   //in Spotify API all ID's are 22 characters long.
@@ -49,36 +72,15 @@ function new_song(link){
 
 }
 
-// function new_song(link){
-//   var id = /track\/([^/^\s\?]{22})/g.exec(link);//regular expression made with RegExr
-//   //in Spotify API all ID's are 22 characters long.
-//   if (id == null){
-//     //TODO: error message
-//     return;
-//   }
-//   id = id[1];//I want the first capture group of the regular expression
-//   const API = APIController;
-//   const fill_database = async () => {
-//     const token = await API.getToken();
-//     const track = await API.getTrack(token,id);
-//     for(var i = 0 ; i < track.artists.length ; i++){
-//       for(var j = i+1 ; j < track.artists.length ; j++){
-//         connect(track.artists[i].id,track.artists[j].id,track.id,track.popularity);
-//       }
-//     }
-//     return;
-//   }
-//   fill_database();
-//   return;
-// }
-
 function new_playlist(link){//or album
-  isPlaylist = true; //this variable tells me if the id is from a playlist or an album
+  var isPlaylist = true; //this variable tells me if the id is from a playlist or an album
   var id = /playlist\/([^/^\s\?]{22})/g.exec(link);//regular expression made with RegExr
   //in Spotify API all ID's are 22 characters long.
+  console.log(id);
   if (id == null){
     isPlaylist = false;
     id = /album\/([^/^\s\?]{22})/g.exec(link);
+    console.log(id);
   }
   id = id[1];//I want the first capture group of the regular expression
   fetch("add-playlist.php", {
