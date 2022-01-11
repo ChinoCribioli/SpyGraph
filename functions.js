@@ -53,7 +53,7 @@ function new_song(link){
   .then(function(json) {
     console.log(json);
   });
-
+  document.getElementById("response").innerHTML = "cancion cargada!"
 }
 
 function new_playlist(link){//or album
@@ -80,7 +80,7 @@ function new_playlist(link){//or album
   .then(function(json) {
     console.log(json);
   });
-
+  document.getElementById("response").innerHTML = "playlist cargada!"
 }
 
 function query(artist1, artist2){
@@ -109,7 +109,7 @@ function query(artist1, artist2){
     return response.json();
   })
   .then(function(json) {
-    console.log(json);
+    console.log(json);//json.artist_path y json.songs_path
   });
 
 
