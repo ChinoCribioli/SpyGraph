@@ -34,7 +34,7 @@ function new_song(link){
   var id = /track\/([^/^\s\?]{22})/g.exec(link);//regular expression made with RegExr
   //in Spotify API all ID's are 22 characters long.
   if (id == null){
-    //TODO: error message
+    document.getElementById("response").innerHTML = "invalid song :(";
     return;
   }
   id = id[1];//I want the first capture group of the regular expression
@@ -52,8 +52,8 @@ function new_song(link){
   })
   .then(function(json) {
     console.log(json);
+    document.getElementById("response").innerHTML = "song uploaded!";
   });
-  document.getElementById("response").innerHTML = "cancion cargada!"
 }
 
 function new_playlist(link){//or album
@@ -63,6 +63,10 @@ function new_playlist(link){//or album
   if (id == null){
     isPlaylist = false;
     id = /album\/([^/^\s\?]{22})/g.exec(link);
+  }
+  if(id == null){
+    document.getElementById("response").innerHTML = "invalid playlist or album :(";
+    return;
   }
   id = id[1];//I want the first capture group of the regular expression
   fetch("add-playlist.php", {
@@ -79,14 +83,18 @@ function new_playlist(link){//or album
   })
   .then(function(json) {
     console.log(json);
+    document.getElementById("response").innerHTML = "playlist uploaded!";
   });
-  document.getElementById("response").innerHTML = "playlist cargada!"
 }
 
 function query(artist1, artist2){
   var id1 = /artist\/([^/^\s\?]{22})/g.exec(artist1), id2 = /artist\/([^/^\s\?]{22})/g.exec(artist2);
-  if(id1 == null || id2 == null){
-    //TODO: error message
+  if(id1 == null){
+    document.getElementById("response").innerHTML = "invalid artist 1 :(";
+    return;
+  }
+  if(id2 == null){
+    document.getElementById("response").innerHTML = "invalid artist 2 :(";
     return;
   }
   id1 = id1[1];
@@ -110,6 +118,16 @@ function query(artist1, artist2){
   })
   .then(function(json) {
     console.log(json);//json.artist_path y json.songs_path
+    if(json.error == null){
+      document.getElementById("response").innerHTML = "these artists are not connected";
+      return;
+    }
+    document.getElementById("response").innerHTML = "We found a path!\n";
+    var songs_path = json.songs_path, artists_path = json.artists_path;
+    for(var i = 1 ; i < artists_path.length ; i++){
+      document.getElementById("response").innerHTML += `${artists_path[i-1]} connects to ${artists_path[i]} by ${songs_path[i-1]} \n`;
+    }
+
   });
 
 
