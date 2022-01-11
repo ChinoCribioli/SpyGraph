@@ -7,22 +7,6 @@
 // }
 // loadScript("API_Commands.js");
 
-// function connect(artist1,artist2,track_id,track_popularity){
-//   if(artist2 < artist1){
-//     var aux = artist1;
-//     artist1 = artist2;
-//     artist2 = aux;
-//   }
-//   fetch("add-edges.php", {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-//         },
-//         body: `artist1=${artist1}&artist2=${artist2}&trackId=${track_id}&popularity=${track_popularity}`,
-//       });
-//   console.log("fetch done");
-// }
-
 // function new_song(link){
 //   var id = /track\/([^/^\s\?]{22})/g.exec(link);//regular expression made with RegExr
 //   //in Spotify API all ID's are 22 characters long.
