@@ -2,6 +2,7 @@
 //error_reporting(E_ALL);
 //ini_set("display_errors", 1);
 include("server_config.php");
+include("auth.php");
 require_once("vendor/autoload.php");//https://stackoverflow.com/questions/65160203/fatal-error-uncaught-error-class-ds-map-not-found-php
 $a1 = $_POST['artist1'];
 $a2 = $_POST['artist2'];
@@ -91,7 +92,13 @@ else {
   }
   $artists_path[] = $current; //add the other end of the path
   //return artist_path and songs_path
-  
+  $i = 0;
+  for(; $i < count($songs_path) ; $i++){
+    $artists_path[$i] = $api->getArtist($artists_path[$i])->name;
+    $songs_path[$i] = $api->getTrack($songs_path[$i])->name;
+  }
+  $artists_path[$i] = $api->getArtist($artists_path[$i])->name;
+
   echo json_encode([
     'artists_path' => $artists_path,
     'songs_path' => $songs_path,
