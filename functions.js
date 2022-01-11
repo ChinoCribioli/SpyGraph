@@ -122,10 +122,10 @@ function query(artist1, artist2){
       document.getElementById("response").innerHTML = "these artists are not connected";
       return;
     }
-    document.getElementById("response").innerHTML = "We found a path!\n";
+    document.getElementById("response").innerHTML = "We found a path!<br>";
     var songs_path = json.songs_path, artists_path = json.artists_path;
     for(var i = 1 ; i < artists_path.length ; i++){
-      document.getElementById("response").innerHTML += `${artists_path[i-1]} connects to ${artists_path[i]} by ${songs_path[i-1]} \n`;
+      document.getElementById("response").innerHTML += `${artists_path[i-1]} connects to ${artists_path[i]} by ${songs_path[i-1]} <br>`;
     }
 
   });
