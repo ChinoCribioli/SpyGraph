@@ -118,7 +118,7 @@ function query(artist1, artist2){
   })
   .then(function(json) {
     console.log(json);//json.artist_path y json.songs_path
-    if(json.error == null){
+    if(json.error){ //if error is not null
       document.getElementById("response").innerHTML = "these artists are not connected";
       return;
     }
