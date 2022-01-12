@@ -36,7 +36,7 @@ function new_song(link){
   //in Spotify API all ID's are 22 characters long.
   if (id == null){
     document.getElementById('song').value = "";
-    document.getElementById("response").innerHTML = "invalid song :(";
+    document.getElementById("response").innerHTML = "Invalid song :(";
     return;
   }
   id = id[1];//I want the first capture group of the regular expression
@@ -55,7 +55,7 @@ function new_song(link){
   .then(function(json) {
     console.log(json);
     document.getElementById('song').value = "";
-    document.getElementById("response").innerHTML = "song uploaded!";
+    document.getElementById("response").innerHTML = "Song uploaded!";
   });
 }
 
@@ -70,7 +70,7 @@ function new_playlist(link){//or album
   }
   if(id == null){
     document.getElementById('playlist').value = "";
-    document.getElementById("response").innerHTML = "invalid playlist or album :(";
+    document.getElementById("response").innerHTML = "Invalid playlist or album :(";
     return;
   }
   id = id[1];//I want the first capture group of the regular expression
@@ -89,7 +89,7 @@ function new_playlist(link){//or album
   .then(function(json) {
     console.log(json);
     document.getElementById('playlist').value = "";
-    document.getElementById("response").innerHTML = "playlist uploaded!";
+    document.getElementById("response").innerHTML = "Playlist uploaded!";
   });
 }
 
@@ -97,11 +97,11 @@ function query(artist1, artist2){
   document.getElementById("response").innerHTML = "...";
   var id1 = /artist\/([^/^\s\?]{22})/g.exec(artist1), id2 = /artist\/([^/^\s\?]{22})/g.exec(artist2);
   if(id1 == null){
-    document.getElementById("response").innerHTML = "invalid artist 1 :(";
+    document.getElementById("response").innerHTML = "Invalid artist 1 :(";
     return;
   }
   if(id2 == null){
-    document.getElementById("response").innerHTML = "invalid artist 2 :(";
+    document.getElementById("response").innerHTML = "Invalid artist 2 :(";
     return;
   }
   id1 = id1[1];
@@ -126,7 +126,7 @@ function query(artist1, artist2){
   .then(function(json) {
     console.log(json);//json.artist_path y json.songs_path
     if(json.error){ //if error is not null
-      document.getElementById("response").innerHTML = "these artists are not connected";
+      document.getElementById("response").innerHTML = "These artists are not connected for now :( <br>But you can upload more songs or playlists and see if you can connect them!";
       return;
     }
     document.getElementById("response").innerHTML = "We found a path!<br>";
