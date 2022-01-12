@@ -35,6 +35,7 @@ function new_song(link){
   var id = /track\/([^/^\s\?]{22})/g.exec(link);//regular expression made with RegExr
   //in Spotify API all ID's are 22 characters long.
   if (id == null){
+    document.getElementById('song').value = "";
     document.getElementById("response").innerHTML = "invalid song :(";
     return;
   }
@@ -53,6 +54,7 @@ function new_song(link){
   })
   .then(function(json) {
     console.log(json);
+    document.getElementById('song').value = "";
     document.getElementById("response").innerHTML = "song uploaded!";
   });
 }
@@ -67,6 +69,7 @@ function new_playlist(link){//or album
     id = /album\/([^/^\s\?]{22})/g.exec(link);
   }
   if(id == null){
+    document.getElementById('playlist').value = "";
     document.getElementById("response").innerHTML = "invalid playlist or album :(";
     return;
   }
@@ -85,6 +88,7 @@ function new_playlist(link){//or album
   })
   .then(function(json) {
     console.log(json);
+    document.getElementById('playlist').value = "";
     document.getElementById("response").innerHTML = "playlist uploaded!";
   });
 }
