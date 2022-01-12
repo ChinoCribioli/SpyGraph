@@ -31,7 +31,7 @@
 // }
 
 function new_song(link){
-  document.getElementById("response").innerHTML = "";
+  document.getElementById("response").innerHTML = "...";
   var id = /track\/([^/^\s\?]{22})/g.exec(link);//regular expression made with RegExr
   //in Spotify API all ID's are 22 characters long.
   if (id == null){
@@ -60,7 +60,7 @@ function new_song(link){
 }
 
 function new_playlist(link){//or album
-  document.getElementById("response").innerHTML = "";
+  document.getElementById("response").innerHTML = "...";
   var isPlaylist = true; //this variable tells me if the id is from a playlist or an album
   var id = /playlist\/([^/^\s\?]{22})/g.exec(link);//regular expression made with RegExr
   //in Spotify API all ID's are 22 characters long.
@@ -94,7 +94,7 @@ function new_playlist(link){//or album
 }
 
 function query(artist1, artist2){
-  document.getElementById("response").innerHTML = "";
+  document.getElementById("response").innerHTML = "...";
   var id1 = /artist\/([^/^\s\?]{22})/g.exec(artist1), id2 = /artist\/([^/^\s\?]{22})/g.exec(artist2);
   if(id1 == null){
     document.getElementById("response").innerHTML = "invalid artist 1 :(";
