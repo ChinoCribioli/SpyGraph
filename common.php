@@ -17,7 +17,6 @@ $servername = $url["host"];
 $username = $url["user"];
 $password = $url["pass"];
 $dbname = substr($url["path"], 1);
-global $conn;
 $conn = new mysqli($servername, $username, $password, $dbname);
 if (!$conn) {
     die(json_encode([
@@ -37,6 +36,7 @@ $api->setAccessToken($accessToken);
 
 // Function definitions
 function upload_song($trackId,$artists,$popularity){
+    global $conn;
     for($i = 0 ; $i < count($artists) ; $i++)for($j = $i+1 ; $j < count($artists) ; $j++){
     $artist1 = $artists[$i]->id;
     $artist2 = $artists[$j]->id;
