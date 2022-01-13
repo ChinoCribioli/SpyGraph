@@ -4,15 +4,6 @@ $a1 = $_POST['artist1'];
 $a2 = $_POST['artist2'];
 //podria chequear si cumple la forma de un id con una expresion regular
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname); //https://devcenter.heroku.com/articles/cleardb#using-cleardb-with-php
-// Check connection
-if (!$conn) {
-  die(json_encode([
-    'error' => "Connection failed: " . mysqli_connect_error(),
-  ]));
-}
-
 //I will make a bfs with two sources: artist1 and artist2, to find the shortest path between them
 
 $queue = new \Ds\Queue();
@@ -100,6 +91,4 @@ else {
     'error' => null,
   ]);
 }
-
-mysqli_close($conn);
 ?>

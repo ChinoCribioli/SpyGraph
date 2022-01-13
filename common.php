@@ -17,7 +17,13 @@ $servername = $url["host"];
 $username = $url["user"];
 $password = $url["pass"];
 $dbname = substr($url["path"], 1);
-// TODO: Set $conn here
+global $conn;
+$conn = new mysqli($servername, $username, $password, $dbname);
+if (!$conn) {
+    die(json_encode([
+        'error' => "Connection failed: " . mysqli_connect_error(),
+    ]));
+}
 
 // Load Spotify config
 $session = new SpotifyWebAPI\Session(
@@ -31,15 +37,6 @@ $api->setAccessToken($accessToken);
 
 // Function definitions
 function upload_song($trackId,$artists,$popularity){
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname); //https://devcenter.heroku.com/articles/cleardb#using-cleardb-with-php
-    // Check connection
-    if (!$conn) {
-    die(json_encode([
-        'error' => "Connection failed: " . mysqli_connect_error(),
-    ]));
-    }
-
     for($i = 0 ; $i < count($artists) ; $i++)for($j = $i+1 ; $j < count($artists) ; $j++){
     $artist1 = $artists[$i]->id;
     $artist2 = $artists[$j]->id;
@@ -90,8 +87,6 @@ function upload_song($trackId,$artists,$popularity){
     echo json_encode([
     'error' => null,
     ]);
-
-    mysqli_close($conn);
 }
 
 ?>
