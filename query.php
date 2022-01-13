@@ -1,13 +1,8 @@
 <?php
-//error_reporting(E_ALL);
-//ini_set("display_errors", 1);
-include("server_config.php");
-include("auth.php");
-require_once("vendor/autoload.php");//https://stackoverflow.com/questions/65160203/fatal-error-uncaught-error-class-ds-map-not-found-php
+require_once('common.php');
 $a1 = $_POST['artist1'];
 $a2 = $_POST['artist2'];
 //podria chequear si cumple la forma de un id con una expresion regular
-
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname); //https://devcenter.heroku.com/articles/cleardb#using-cleardb-with-php

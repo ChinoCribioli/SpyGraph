@@ -1,8 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-include("auth.php"); //set the access token
-include("upload_song.php");
+require_once('common.php');
+
 $playlistId = $_POST['playlistId'];
 $isPlaylist = $_POST['isPlaylist'];
 if($isPlaylist == 'true'){//it's an string so I have to compare it with "true"
