@@ -8,8 +8,8 @@ require_once('vendor/autoload.php');
 
 // Set verbose error reporting
 // TODO: Set according to DEBUG envvar
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
+// error_reporting(E_ALL);
+// ini_set("display_errors", 1);
 
 // Load DB config
 $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
