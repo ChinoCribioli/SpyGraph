@@ -84,9 +84,7 @@ function upload_song($trackId,$artists,$popularity){
         }
     }
     }
-    echo json_encode([
-    'error' => null,
-    ]);
+    
 }
 
 ?>
