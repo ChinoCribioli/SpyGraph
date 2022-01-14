@@ -1,5 +1,5 @@
 <?php
-require_once('common.php');
+require_once('server_config.php');
 $a1 = $_POST['artist1'];
 $a2 = $_POST['artist2'];
 //podria chequear si cumple la forma de un id con una expresion regular

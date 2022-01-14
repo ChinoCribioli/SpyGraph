@@ -1,35 +1,3 @@
-// function loadScript(url){
-//   var head = document.getElementsByTagName('head')[0];
-//   var script = document.createElement('script');
-//   script.type = 'text/javascript';
-//   script.src = url;
-//   head.appendChild(script);
-// }
-// loadScript("API_Commands.js");
-
-// function new_song(link){
-//   var id = /track\/([^/^\s\?]{22})/g.exec(link);//regular expression made with RegExr
-//   //in Spotify API all ID's are 22 characters long.
-//   if (id == null){
-//     //TODO: error message
-//     return;
-//   }
-//   id = id[1];//I want the first capture group of the regular expression
-//   const API = APIController;
-//   const fill_database = async () => {
-//     const token = await API.getToken();
-//     const track = await API.getTrack(token,id);
-//     for(var i = 0 ; i < track.artists.length ; i++){
-//       for(var j = i+1 ; j < track.artists.length ; j++){
-//         connect(track.artists[i].id,track.artists[j].id,track.id,track.popularity);
-//       }
-//     }
-//     return;
-//   }
-//   fill_database();
-//   return;
-// }
-
 function new_song(link){
   document.getElementById("response").innerHTML = "...";
   var id = /track\/([^/^\s\?]{22})/g.exec(link);//regular expression made with RegExr

@@ -1,5 +1,5 @@
 <?php
-require_once('common.php');
+require_once('server_config.php');
 
 $playlistId = $_POST['playlistId'];
 $isPlaylist = $_POST['isPlaylist'];

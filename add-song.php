@@ -1,6 +1,6 @@
 <?php
 
-require_once('common.php');
+require_once('server_config.php');
 
 $trackId = $_POST['trackId'];
 
