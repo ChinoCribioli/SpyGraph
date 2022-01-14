@@ -74,11 +74,8 @@ function query(artist1, artist2){
   }
   id1 = id1[1];
   id2 = id2[1];
-  if(id2 < id1){
-    var aux = id1;
-    id1 = id2;
-    id2 = aux;
-  }
+  if(id2 < id1) [id1, id2] = [id2, id1]; //a fancy way to swap the id's
+  console.log(id1 < id2);
   fetch("query.php", {
     method: "POST",
     headers: {
