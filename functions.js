@@ -17,6 +17,8 @@ function new_song(link){
   }).then(function(response) {
     if (!response.ok) {
       console.log("HTTP error, status = " + response.status);
+      document.getElementById("response").innerHTML = "Something went wrong, please try again later :(";
+      throw new Error("Something went wrong with the song");
     }
     return response.json();
   })
@@ -51,6 +53,8 @@ function new_playlist(link){//or album
   }).then(function(response) {
     if (!response.ok) {
       console.log("HTTP error, status = " + response.status);
+      document.getElementById("response").innerHTML = "Something went wrong, please try again later :(";
+      throw new Error("Something went wrong with the playlist");
     }
     return response.json();
   })
@@ -75,7 +79,6 @@ function query(artist1, artist2){
   id1 = id1[1];
   id2 = id2[1];
   if(id2 < id1) [id1, id2] = [id2, id1]; //a fancy way to swap the id's
-  console.log(id1 < id2);
   fetch("query.php", {
     method: "POST",
     headers: {
@@ -85,6 +88,8 @@ function query(artist1, artist2){
   }).then(function(response) {
     if (!response.ok) {
       console.log("HTTP error, status = " + response.status);
+      document.getElementById("response").innerHTML = "Something went wrong, please try again later :(";
+      throw new Error("Something went wrong with the query");
     }
     return response.json();
   })
@@ -99,8 +104,5 @@ function query(artist1, artist2){
     for(var i = 1 ; i < artists_path.length ; i++){
       document.getElementById("response").innerHTML += `<span style="color:red;">${artists_path[i-1]}</span> connects to <span style="color:red;">${artists_path[i]}</span> by <span style="color:blue;">${songs_path[i-1]}</span> <br>`;
     }
-
   });
-
-
 }
