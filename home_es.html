@@ -11,35 +11,35 @@
 	<body style="background-color: darkcyan;">
 		<div class="container">
 			<div class="row">
-				<div class="col-8">
-					<input id="song" type="text" class="form-control" placeholder="cargar nueva cancion"/></input>
+				<div class="col-4">
+					<input id="artist1" type="text" class="form-control" placeholder="Artista 1"/></input>
+				</div>
+				<div class="col-4">
+					<input id="artist2" type="text" class="form-control" placeholder="Artista 2"/></input>
 				</div>
 				<div class="col-4">
 					<div class="d-grid gap-2">
-						<button type="button" class="btn btn-outline-dark" onclick="new_song(document.getElementById('song').value)">agregar nueva cancion</button>
+						<button type="button" class="btn btn-outline-dark" onclick="query(document.getElementById('artist1').value,document.getElementById('artist2').value)">Consultar conexion</button>
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-8">
-					<input id="playlist" type="text" class="form-control" placeholder="cargar nuevo album o playlist"/></input>
+					<input id="song" type="text" class="form-control" placeholder="Cargar nueva cancion"/></input>
 				</div>
 				<div class="col-4">
 					<div class="d-grid gap-2">
-						<button type="button" class="btn btn-outline-dark" onclick="new_playlist(document.getElementById('playlist').value)">nuevo album o playlist</button>
+						<button type="button" class="btn btn-outline-dark" onclick="new_song(document.getElementById('song').value)">Agregar nueva cancion</button>
 					</div>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-4">
-					<input id="artist1" type="text" class="form-control" placeholder="artista 1"/></input>
-				</div>
-				<div class="col-4">
-					<input id="artist2" type="text" class="form-control" placeholder="artista 2"/></input>
+				<div class="col-8">
+					<input id="playlist" type="text" class="form-control" placeholder="Cargar nuevo album o playlist"/></input>
 				</div>
 				<div class="col-4">
 					<div class="d-grid gap-2">
-						<button type="button" class="btn btn-outline-dark" onclick="query(document.getElementById('artist1').value,document.getElementById('artist2').value)">consultar conexion</button>
+						<button type="button" class="btn btn-outline-dark" onclick="new_playlist(document.getElementById('playlist').value)">Nuevo album o playlist</button>
 					</div>
 				</div>
 			</div>
@@ -53,36 +53,36 @@
 				<div class="accordion-item">
 				<h2 class="accordion-header" id="headingOne">
 					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-					Accordion Item #1
+						¿Que es SpyGraph?
 					</button>
 				</h2>
 				<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 					<div class="accordion-body">
-					<strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+						Imaginate que estas en la casa de Mick Jagger (el mejor dia de tu vida). Ademas, tenes un portal magico que te puede llevar de una casa a otra al instante y todas las veces que quieras, pero con la condicion de que solo podes ir a casas de artistas que hayan colaborado con Mick. Mejor aun, el portal te puede llevar desde la casa de cualquier artista a la casa de cualquier otro artista siempre y cuando esos dos artistas hayan colaborado en una cancion. ¿Podrias llegar a la casa de, por ejemplo, Shakira? ¿Y a la de Madonna? SpyGraph es una plataforma que nos ayuda a resolver estas inquietudes.
 					</div>
 				</div>
 				</div>
 				<div class="accordion-item">
 				<h2 class="accordion-header" id="headingTwo">
 					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-					Accordion Item #2
+						¿Que puedo hacer?
 					</button>
 				</h2>
 				<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
 					<div class="accordion-body">
-					<strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+						En esta pagina podes hacer 3 cosas: <br>1) Consultar por dos artistas. Con esto, estás preguntando si es posible ir desde la casa del "Artista 1" a la del "Artista 2". En caso de que no se pueda, la respuesta sera negativa. En caso de que si, la respuesta sera el menor camino de una casa a la otra (o sea, pasando por la menor cantidad de casas posible) junto con las canciones que hacen el viaje posible.<br><strong>Nota:</strong> La aplicacion funciona con una base de datos propia que no contiene todas las canciones, entonces que la respuesta es negativa no quiere decir que no lo haya, sino que no es posible con las canciones que hay en la base de datos actualmente. Para mitigar esto, seguir leyendo las otras dos acciones.<br>2) Cargar una cancion: Si hay alguna cancion que crees que aporta buenas conecciones entre casas, o que no sabes si ya esta en la base, podes agregarla.<br>3) Cargar un album o playlist: Si queres cargar todas las canciones de una lista, en vez de cargarlas una por una podes directamente cargar toda la lista.
 					</div>
 				</div>
 				</div>
 				<div class="accordion-item">
 				<h2 class="accordion-header" id="headingThree">
 					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-					Accordion Item #3
+						¿Como funciona?
 					</button>
 				</h2>
 				<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
 					<div class="accordion-body">
-					<strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+						expliacion 3
 					</div>
 				</div>
 				</div>
