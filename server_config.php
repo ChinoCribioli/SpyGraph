@@ -4,6 +4,7 @@
 // CLEARDB_DATABASE_URL
 // SPOTIFY_CLIENT_ID
 // SPOTIFY_CLIENT_SECRET
+//This is going to be included in all the other PHP files
 require_once('vendor/autoload.php');
 
 // Set verbose error reporting
@@ -17,7 +18,7 @@ $servername = $url["host"];
 $username = $url["user"];
 $password = $url["pass"];
 $dbname = substr($url["path"], 1);
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);//set the connection to the database
 if (!$conn) {
     die(json_encode([
         'error' => "Connection failed: " . mysqli_connect_error(),
@@ -35,12 +36,13 @@ $api = new \SpotifyWebAPI\SpotifyWebAPI();//set the Spotify API
 $api->setAccessToken($accessToken);
 
 // Function definitions
-function upload_song($trackId,$artists,$popularity){
+function upload_song($trackId,$artists,$popularity){//the function to upload a song to the database
     global $conn;
     for($i = 0 ; $i < count($artists) ; $i++)for($j = $i+1 ; $j < count($artists) ; $j++){
+        //for each pair of artists, add a row connecting them
         $artist1 = $artists[$i]->id;
         $artist2 = $artists[$j]->id;
-        if($artist2 < $artist1){
+        if($artist2 < $artist1){//I want artist1 < artist2
             $aux = $artist1;
             $artist1 = $artist2;
             $artist2 = $aux;
@@ -50,24 +52,26 @@ function upload_song($trackId,$artists,$popularity){
         $sql = "SELECT * FROM relations WHERE Artist1 = ? AND Artist2 = ?;";
         //here I make the connection with the database in a secure way
         $statement = mysqli_prepare($conn, $sql);
+        //and now I complete the query with the ids of the artists
+        //the 'ss' tells that the entries will be two strings
         mysqli_stmt_bind_param($statement, 'ss', $artist1, $artist2);
         mysqli_stmt_execute($statement);
         $result = $statement->get_result();
 
         
-        if(mysqli_num_rows($result) == 0){
+        if(mysqli_num_rows($result) == 0){//if there are no rows like this, I add one
             $sql = "INSERT INTO relations (Artist1, Artist2, Song_Connecting, Popularity) VALUES (?,?,?,?);";
             $statement = mysqli_prepare($conn, $sql);
             mysqli_stmt_bind_param($statement, 'sssi', $artist1, $artist2,$trackId,$popularity);
             mysqli_stmt_execute($statement);
             $result = $statement->get_result();
         }
-        else if(mysqli_num_rows($result) > 1){
+        else if(mysqli_num_rows($result) > 1){//if there's more than one, return the error
             die(json_encode([
             'error' => 'more than one row with the same edge in the graph.',
             ]));
         }
-        else {
+        else {//if there's already one, I compare the popularity of the songs and leave the most popular
             $row = $result->fetch_assoc();
             $current_popularity = $row["Popularity"];
             if($current_popularity < $popularity){
