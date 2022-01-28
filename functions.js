@@ -1,3 +1,28 @@
+function fill_text(l){//l=0 if I want to fill in English and l=1 if I want it in Spanish
+  fetch("./dictionary.json")
+    .then(function(resp) {
+      return resp.json();
+    })
+    .then(function(data){
+      console.log(data);
+      document.getElementById("artist1").placeholder = data.artist1[l];
+      document.getElementById("artist2").placeholder = data.artist2[l];
+      document.getElementById("artists_button").innerHTML = data.artists_button[l];
+      document.getElementById("new_song").placeholder = data.new_song[l];
+      document.getElementById("song_button").innerHTML = data.song_button[l];
+      document.getElementById("new_playlist").placeholder = data.new_playlist[l];
+      document.getElementById("playlist_button").innerHTML = data.playlist_button[l];
+      document.getElementById("web_player").innerHTML = data.web_player[l];
+      document.getElementById("what").innerHTML = data.what[l];
+      document.getElementById("can").innerHTML = data.can[l];
+      document.getElementById("how").innerHTML = data.how[l];
+      document.getElementById("what_explanation").innerHTML = data.what_explanation[l];
+      document.getElementById("can_explanation").innerHTML = data.can_explanation[l];
+      document.getElementById("how_explanation").innerHTML = data.how_explanation[l];
+      document.getElementById("developed").innerHTML = data.developed[l];
+    });
+}
+
 function new_song(link){
   document.getElementById("response").innerHTML = "...";//Set the response to "wait"
   var id = /track\/([^/^\s\?]{22})/g.exec(link);//extract the id with a regular expression made with RegExr
