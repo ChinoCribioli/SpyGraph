@@ -46,7 +46,7 @@ function new_song(link){
   })
   .then(function(json) {
     console.log(json);
-    document.getElementById('song').value = "";
+    document.getElementById('new_song').value = "";
     document.getElementById("response").innerHTML = responses["succesful_song"][lang];
   });
 }
@@ -82,7 +82,7 @@ function new_playlist(link){//or album
   })
   .then(function(json) {
     console.log(json);
-    document.getElementById('playlist').value = "";
+    document.getElementById('new_playlist').value = "";
     document.getElementById("response").innerHTML = responses["succesful_playlist"][lang];
   });
 }
