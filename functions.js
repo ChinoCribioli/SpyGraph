@@ -1,10 +1,14 @@
+var lang = 0; //global variable that tells me the language we are using
+var responses = [];
+
 function fill_text(l){//l=0 if I want to fill in English and l=1 if I want it in Spanish
+  lang = l;
   fetch("./dictionary.json")
     .then(function(resp) {
       return resp.json();
     })
     .then(function(data){
-      console.log(data);
+      responses = data;
       var placeholders = ["artist1", "artist2", "new_song", "new_playlist"];
       var texts = ["artists_button", "song_button", "playlist_button", "web_player", "what", "what_explanation", "can", "can_explanation", "how", "how_explanation", "developed"];
       for(var i = 0 ; i < placeholders.length ; i++){
@@ -22,7 +26,7 @@ function new_song(link){
   //in Spotify API all ID's are 22 characters long.
   if (id == null){//return error
     document.getElementById('song').value = "";//empty the form entry
-    document.getElementById("response").innerHTML = "Invalid song :(";
+    document.getElementById("response").innerHTML = responses["invalid_song"][lang];
     return;
   }
   id = id[1];//I want the first capture group of the regular expression
@@ -35,7 +39,7 @@ function new_song(link){
   }).then(function(response) {
     if (!response.ok) {
       console.log("HTTP error, status = " + response.status);
-      document.getElementById("response").innerHTML = "Something went wrong, please try again later :(";
+      document.getElementById("response").innerHTML = responses["something_wrong"][lang];
       throw new Error("Something went wrong with the song");
     }
     return response.json();
@@ -43,7 +47,7 @@ function new_song(link){
   .then(function(json) {
     console.log(json);
     document.getElementById('song').value = "";
-    document.getElementById("response").innerHTML = "Song uploaded!";
+    document.getElementById("response").innerHTML = responses["succesful_song"][lang];
   });
 }
 
@@ -58,7 +62,7 @@ function new_playlist(link){//or album
   }
   if(id == null){//if it didn't find anything again, return an error
     document.getElementById('playlist').value = "";
-    document.getElementById("response").innerHTML = "Invalid playlist or album :(";
+    document.getElementById("response").innerHTML = responses["invalid_playlist"][lang];;
     return;
   }
   id = id[1];//I want the first capture group of the regular expression
@@ -71,7 +75,7 @@ function new_playlist(link){//or album
   }).then(function(response) {
     if (!response.ok) {
       console.log("HTTP error, status = " + response.status);
-      document.getElementById("response").innerHTML = "Something went wrong, please try again later :(";
+      document.getElementById("response").innerHTML = responses["something_wrong"][lang];
       throw new Error("Something went wrong with the playlist");
     }
     return response.json();
@@ -79,7 +83,7 @@ function new_playlist(link){//or album
   .then(function(json) {
     console.log(json);
     document.getElementById('playlist').value = "";
-    document.getElementById("response").innerHTML = "Playlist uploaded!";
+    document.getElementById("response").innerHTML = responses["succesful_playlist"][lang];
   });
 }
 
@@ -88,11 +92,11 @@ function query(artist1, artist2){
   //extract the artists' id's
   var id1 = /artist\/([^/^\s\?]{22})/g.exec(artist1), id2 = /artist\/([^/^\s\?]{22})/g.exec(artist2);
   if(id1 == null){
-    document.getElementById("response").innerHTML = "Invalid artist 1 :(";
+    document.getElementById("response").innerHTML = responses["invalid_artist1"][lang];
     return;
   }
   if(id2 == null){
-    document.getElementById("response").innerHTML = "Invalid artist 2 :(";
+    document.getElementById("response").innerHTML = responses["invalid_artist2"][lang];
     return;
   }
   id1 = id1[1];
@@ -101,7 +105,7 @@ function query(artist1, artist2){
   if(id2 < id1) [id1, id2] = [id2, id1]; //a fancy way to swap the id's
   //if we have the same artist, return a special response
   if(id1 == id2){
-    document.getElementById("response").innerHTML = "They are connected since they are the same artists.";
+    document.getElementById("response").innerHTML = responses["same_artist"][lang];
     return;
   }
   fetch("query.php", {//call the PHP file with the artists' id's
@@ -113,7 +117,7 @@ function query(artist1, artist2){
   }).then(function(response) {
     if (!response.ok) {
       console.log("HTTP error, status = " + response.status);
-      document.getElementById("response").innerHTML = "Something went wrong, please try again later :(";
+      document.getElementById("response").innerHTML = responses["something_wrong"][lang];
       throw new Error("Something went wrong with the query");
     }
     return response.json();
@@ -121,14 +125,14 @@ function query(artist1, artist2){
   .then(function(json) {
     console.log(json);//this json has, json.artist_path and json.songs_path that will tell me the response
     if(json.error){ //if error is not null, these are not connected
-      document.getElementById("response").innerHTML = "These artists are not connected for now :( <br>But you can upload more songs or playlists and see if you can connect them!";
+      document.getElementById("response").innerHTML = responses["not_connected"][lang];
       return;
     }
     //else, return the artists path and songs path
-    document.getElementById("response").innerHTML = "We found a path!<br>";
+    document.getElementById("response").innerHTML = responses["connected"][lang];
     var songs_path = json.songs_path, artists_path = json.artists_path;
     for(var i = 1 ; i < artists_path.length ; i++){
-      document.getElementById("response").innerHTML += `<span style="color:red;">${artists_path[i-1]}</span> connects to <span style="color:red;">${artists_path[i]}</span> by <span style="color:blue;">${songs_path[i-1]}</span> <br>`;
+      document.getElementById("response").innerHTML += "<span style=\"color:red;\">" + artists_path[i-1] + responses["give_path"][lang][0] + artists_path[i] + responses["give_path"][lang][1] + songs_path[i-1] + "</span> <br>";
     }
   });
 }
