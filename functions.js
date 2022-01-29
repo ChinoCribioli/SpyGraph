@@ -25,7 +25,7 @@ function new_song(link){
   var id = /track\/([^/^\s\?]{22})/g.exec(link);//extract the id with a regular expression made with RegExr
   //in Spotify API all ID's are 22 characters long.
   if (id == null){//return error
-    document.getElementById('song').value = "";//empty the form entry
+    document.getElementById('new_song').value = "";//empty the form entry
     document.getElementById("response").innerHTML = responses["invalid_song"][lang];
     return;
   }
@@ -61,7 +61,7 @@ function new_playlist(link){//or album
     id = /album\/([^/^\s\?]{22})/g.exec(link);
   }
   if(id == null){//if it didn't find anything again, return an error
-    document.getElementById('playlist').value = "";
+    document.getElementById('new_playlist').value = "";
     document.getElementById("response").innerHTML = responses["invalid_playlist"][lang];;
     return;
   }
