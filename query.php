@@ -85,11 +85,11 @@ else {//If I have an answer, reconstruct the path
   $artists_path[] = $current; //add the other end of the path
   //return artist_path and songs_path
   $i = 0;
-  for(; $i < count($songs_path) ; $i++){//I return only the names of the artists and songs
-    $artists_path[$i] = $api->getArtist($artists_path[$i])->name;
-    $songs_path[$i] = $api->getTrack($songs_path[$i])->name;
+  for(; $i < count($songs_path) ; $i++){//I return only the names and id's of the artists and songs
+    $artists_path[$i] = [$api->getArtist($artists_path[$i])->name,$artists_path[$i]];
+    $songs_path[$i] = [$api->getTrack($songs_path[$i])->name,$songs_path[$i]];
   }
-  $artists_path[$i] = $api->getArtist($artists_path[$i])->name;
+  $artists_path[$i] = [$api->getArtist($artists_path[$i])->name,$artists_path[$i]];
 
   echo json_encode([
     'artists_path' => $artists_path,

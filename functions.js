@@ -130,9 +130,9 @@ function query(artist1, artist2){
     }
     //else, return the artists path and songs path
     document.getElementById("response").innerHTML = responses["connected"][lang];
-    var songs_path = json.songs_path, artists_path = json.artists_path;
+    var songs_path = json.songs_path, artists_path = json.artists_path;//In each list, we have the name in [0] and the id in [1]
     for(var i = 1 ; i < artists_path.length ; i++){
-      document.getElementById("response").innerHTML += "<span style=\"color:red;\">" + artists_path[i-1] + responses["give_path"][lang][0] + artists_path[i] + responses["give_path"][lang][1] + songs_path[i-1] + "</span> <br>";
+      document.getElementById("response").innerHTML += `<span style="color:red;"><a href="https://open.spotify.com/artist/${artists_path[i-1][1]}" target="_blank">${artists_path[i-1][0]}</a></span> ` + responses["give_path"][lang][0] + ` <span style="color:red;"><a href="https://open.spotify.com/artist/${artists_path[i][1]}" target="_blank">${artists_path[i][0]}</a></span> ` + responses["give_path"][lang][1] + ` <span style="color:blue;"><a href="https://open.spotify.com/track/${songs_path[i-1][1]}" target="_blank">${songs_path[i-1][0]}</a></span><br>`;
     }
   });
 }

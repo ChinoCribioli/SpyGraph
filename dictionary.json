@@ -25,7 +25,7 @@
     "not_connected": ["These artists are not connected for now :( <br>But you can upload more songs or playlists and see if you can connect them!", "Estos artistas no estan conectados por ahora :( <br>Pero podes subir mas canciones o playlists para ver si los podes conectar!"],
     "connected": ["We found a path!<br>","Encontramos un camino!<br>"],
     "give_path": [
-        ["</span> connects to <span style=\"color:red;\">", "</span> by <span style=\"color:blue;\">"],
-        ["</span> se conecta a <span style=\"color:red;\">", "</span> por <span style=\"color:blue;\">"]
+        ["connects to", "by"],
+        ["se conecta a", "por"]
     ]
 }
