@@ -10,7 +10,7 @@ function fill_text(l){//l=0 if I want to fill in English and l=1 if I want it in
     .then(function(data){
       responses = data;
       var placeholders = ["artist1", "artist2", "new_song", "new_playlist"];
-      var texts = ["artists_button", "song_button", "playlist_button", "web_player", "what", "what_explanation", "can", "can_explanation", "how", "how_explanation", "developed"];
+      var texts = ["welcome", "artists_button", "song_button", "playlist_button", "web_player", "what", "what_explanation", "can", "can_explanation", "how", "how_explanation", "developed"];
       for(var i = 0 ; i < placeholders.length ; i++){
         document.getElementById(placeholders[i]).placeholder = data[placeholders[i]][l];
       }

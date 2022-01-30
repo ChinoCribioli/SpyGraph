@@ -1,4 +1,5 @@
 {
+    "welcome": ["Welcome to SpyGraph! Select your language: ", "Bienvenido a SpyGraph! Seleccione su idioma: "],
     "artist1": ["Artist 1", "Artista 1"],
     "artist2": ["Artist 2", "Artista 2"],
     "artists_button": ["Check connection","Consultar conexion"],
