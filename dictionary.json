@@ -1,5 +1,5 @@
 {
-    "welcome": ["Welcome to SpyGraph! Select your language: ", "Bienvenido a SpyGraph! Seleccione su idioma: "],
+    "welcome": ["Welcome to SpyGraph! Select your language: &nbsp<button class=\"btn btn-primary\" style=\"background-color: white;\" onclick=\"fill_text(0)\">&#x1F1FA;&#x1F1F8;</button><button class=\"btn btn-danger\" style=\"background-color: white;\" onclick=\"fill_text(1)\">&#x1F1EA;&#x1F1F8;</button>", "Bienvenido a SpyGraph! Seleccione su idioma: &nbsp<button class=\"btn btn-primary\" style=\"background-color: white;\" onclick=\"fill_text(0)\">&#x1F1FA;&#x1F1F8;</button><button class=\"btn btn-danger\" style=\"background-color: white;\" onclick=\"fill_text(1)\">&#x1F1EA;&#x1F1F8;</button>"],
     "artist1": ["Artist 1", "Artista 1"],
     "artist2": ["Artist 2", "Artista 2"],
     "artists_button": ["Check connection","Consultar conexion"],
