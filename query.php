@@ -28,7 +28,7 @@ $answer = array();
 while( ! $queue->isEmpty() ){
   $current = $queue->pop();
   //the question marks are to sanitize the variables
-  $sql = "SELECT * FROM relations WHERE Artist1 = ? OR Artist2 = ?;";
+  $sql = "SELECT Artist1, Artist2, Song_Connecting FROM relations WHERE Artist1 = ? OR Artist2 = ?;";
   //here I make the connection with the database in a secure way
   $statement = mysqli_prepare($conn, $sql);
   //and here I fill the query with the values I want. 'ss' means that the paremeters are going to be two strings.

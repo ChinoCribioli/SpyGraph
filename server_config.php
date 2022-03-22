@@ -49,7 +49,7 @@ function upload_song($trackId,$artists,$popularity){//the function to upload a s
         }
 
         //the question marks are to sanitize the variables
-        $sql = "SELECT * FROM relations WHERE Artist1 = ? AND Artist2 = ?;";
+        $sql = "SELECT Popularity FROM relations WHERE Artist1 = ? AND Artist2 = ?;";
         //here I make the connection with the database in a secure way
         $statement = mysqli_prepare($conn, $sql);
         //and now I complete the query with the ids of the artists
